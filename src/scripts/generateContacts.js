@@ -8,7 +8,6 @@ const generateContacts = async (number) => {
 
     const contacts = await fs.readFile(PATH_DB);
     const parsedContacts = JSON.parse(contacts);
-    console.log(typeof parsedContacts);
 
     // Генеруємо нові контакти
     const newContacts = Array.from({ length: number }, createFakeContact);
