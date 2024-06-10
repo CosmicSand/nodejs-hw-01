@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { PATH_DB } from '../constants/contacts.js';
 import { createFakeContact } from '../utils/createFakeContact.js';
 import fs from 'fs/promises';
@@ -9,6 +8,7 @@ const generateContacts = async (number) => {
 
     const contacts = await fs.readFile(PATH_DB);
     const parsedContacts = JSON.parse(contacts);
+    console.log(typeof parsedContacts);
 
     // Генеруємо нові контакти
     const newContacts = Array.from({ length: number }, createFakeContact);
@@ -16,7 +16,6 @@ const generateContacts = async (number) => {
     //   Додаємо нові контакти до початкового масиву
     const updatedContacts = JSON.stringify([...parsedContacts, ...newContacts]);
     await fs.writeFile(PATH_DB, updatedContacts);
-    console.log(parsedContacts);
   } catch (error) {
     console.error('Error reading contacts:', error);
   }
